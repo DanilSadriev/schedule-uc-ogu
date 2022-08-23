@@ -30,11 +30,7 @@ void main() async {
 
   await di.init(); //инициализация зависимостей
 
-  Platform.isAndroid
-      ? await Firebase.initializeApp()
-      : await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        );
+  await Firebase.initializeApp();
 
   await FirebaseAnalytics.instance.logAppOpen();
 
