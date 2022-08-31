@@ -1,7 +1,4 @@
 // ignore_for_file: depend_on_referenced_packages
-
-import 'dart:io';
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -20,7 +17,6 @@ import 'package:raspisanie/feature/presentation/bloc/schedule_bloc/schedule_bloc
 import 'package:raspisanie/feature/presentation/core/routes/routes.gr.dart';
 
 import 'package:raspisanie/locator_service.dart' as di;
-import 'package:raspisanie/services/firebase_options.dart';
 import 'feature/presentation/bloc/call_schedule/call_bloc.dart';
 import 'feature/presentation/bloc/name_groups_bloc/name_groups_bloc.dart';
 import 'locator_service.dart';
