@@ -14,6 +14,7 @@ import 'package:raspisanie/feature/presentation/bloc/added_groups_bloc/added_gro
 import 'package:raspisanie/feature/presentation/bloc/app_cubit/app_cubit.dart';
 import 'package:raspisanie/feature/presentation/bloc/call_schedule/call_event.dart';
 import 'package:raspisanie/feature/presentation/bloc/schedule_bloc/schedule_bloc.dart';
+import 'package:raspisanie/feature/presentation/bloc/schedule_bloc/schedule_event.dart';
 import 'package:raspisanie/feature/presentation/core/routes/routes.gr.dart';
 
 import 'package:raspisanie/locator_service.dart' as di;
@@ -82,6 +83,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ScheduleBloc>(
           create: (context) => sl<ScheduleBloc>(),
+          lazy: false,
         ),
         BlocProvider<NameGroupsBloc>(
           create: (context) => sl<NameGroupsBloc>(),

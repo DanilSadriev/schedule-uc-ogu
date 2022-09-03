@@ -77,27 +77,6 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                   context.router.push(const LessonCardSettings());
                 },
               ),
-              SettingsTile.navigation(
-                enabled: false,
-                title: Text(
-                  'Формат календаря\n (в разработке)',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                description: Text(
-                  'Определяет в каком формате отображать календарь. По умолчанию выбрана "Неделя"',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge
-                      ?.copyWith(color: Theme.of(context).disabledColor),
-                ),
-                leading: const RectangleIcon(
-                  icon: Icons.calendar_month,
-                  color: DarkThemeColors.green,
-                ),
-                onPressed: ((context) {
-                  context.router.push(const SelectFormatCalendarRoute());
-                }),
-              ),
               SettingsTile.switchTile(
                 title: Text(
                   'Отображать перерывы',
@@ -119,20 +98,6 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                   });
                 },
               ),
-              // SettingsTile(
-              //   title: Text(
-              //     'Скачать расписание звонков',
-              //     style: Theme.of(context).textTheme.titleMedium,
-              //   ),
-              //   description: Text(
-              //     'Важно! Расписание звонков автоматически обновляется при запуске приложения. Просим нажимать данную кнопку только при необходимости.',
-              //     style: Theme.of(context).textTheme.labelLarge
-              //         .copyWith(color: DarkThemeColors.gray),
-              //   ),
-              //   onPressed: (context) {
-              //     context.read<CallBloc>().add(const CallView(true));
-              //   },
-              // ),
             ],
           ),
           SettingsSection(

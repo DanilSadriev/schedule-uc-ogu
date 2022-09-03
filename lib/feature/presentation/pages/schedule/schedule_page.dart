@@ -92,8 +92,8 @@ class _SchedulePageState extends State<SchedulePage> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: DarkThemeColors.white,
+                Divider(
+                  color: Theme.of(context).disabledColor,
                 ),
                 BlocBuilder<AddedGroupsBloc, AddedGroupsState>(
                     builder: (context, state) {
