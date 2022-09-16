@@ -46,7 +46,7 @@ class MorePage extends StatelessWidget {
             SettingButton(
               title: 'Поддержка',
               onTap: () {
-                context.router.push(const SupportRoute());
+                context.router.push(SupportRoute());
               },
               enabled: true,
             ),

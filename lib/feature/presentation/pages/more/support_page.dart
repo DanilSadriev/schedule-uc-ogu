@@ -69,7 +69,10 @@ class SupportPage extends StatelessWidget {
   }
 
   Future<void> openUrl(Uri url) async {
-    if (!await launchUrl(url)) {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalNonBrowserApplication,
+    )) {
       throw 'Could not launch $url';
     }
   }

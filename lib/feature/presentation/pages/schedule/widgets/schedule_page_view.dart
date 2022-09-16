@@ -43,143 +43,146 @@ class _SchedulePageViewState extends State<SchedulePageView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TableCalendar(
-          pageJumpingEnabled: true,
-          weekendDays: const [DateTime.sunday],
-          calendarFormat: calendarFormat,
-          firstDay: DateTime(2010),
-          lastDay: DateTime(2100),
-          focusedDay: focusedDay,
-          sixWeekMonthsEnforced: true,
-          startingDayOfWeek: StartingDayOfWeek.monday,
-          headerStyle: HeaderStyle(
-            headerPadding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            leftChevronVisible: false,
-            rightChevronVisible: false,
-            formatButtonShowsNext: false,
-            titleTextStyle:
-                Theme.of(context).textTheme.titleMedium ?? const TextStyle(),
-            formatButtonTextStyle:
-                Theme.of(context).textTheme.bodyLarge ?? const TextStyle(),
-            formatButtonDecoration: BoxDecoration(
-              border: Border.fromBorderSide(
-                BorderSide(color: Theme.of(context).cardColor),
+        Container(
+          color: Theme.of(context).backgroundColor,
+          child: TableCalendar(
+            pageJumpingEnabled: true,
+            weekendDays: const [DateTime.sunday],
+            calendarFormat: calendarFormat,
+            firstDay: DateTime(2010),
+            lastDay: DateTime(2100),
+            focusedDay: focusedDay,
+            sixWeekMonthsEnforced: true,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            headerStyle: HeaderStyle(
+              headerPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              leftChevronVisible: false,
+              rightChevronVisible: false,
+              formatButtonShowsNext: false,
+              titleTextStyle:
+                  Theme.of(context).textTheme.titleMedium ?? const TextStyle(),
+              formatButtonTextStyle:
+                  Theme.of(context).textTheme.bodyLarge ?? const TextStyle(),
+              formatButtonDecoration: BoxDecoration(
+                border: Border.fromBorderSide(
+                  BorderSide(color: Theme.of(context).cardColor),
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(16.0),
+                ),
               ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(16.0),
-              ),
+              titleTextFormatter: (DateTime date, dynamic locale) {
+                String dateStr =
+                    '${DateFormat.yMMMM(locale).format(date)}\n${widget.activeGroup}';
+                return dateStr;
+              },
             ),
-            titleTextFormatter: (DateTime date, dynamic locale) {
-              String dateStr =
-                  '${DateFormat.yMMMM(locale).format(date)}\n${widget.activeGroup}';
-              return dateStr;
+            daysOfWeekStyle: DaysOfWeekStyle(
+              weekdayStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: DarkThemeColors.gray) ??
+                  const TextStyle(),
+              weekendStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: DarkThemeColors.lightGray) ??
+                  const TextStyle(),
+            ),
+            availableCalendarFormats: const {
+              CalendarFormat.month: 'Месяц',
+              CalendarFormat.twoWeeks: '2 недели',
+              CalendarFormat.week: 'Неделя'
             },
-          ),
-          daysOfWeekStyle: DaysOfWeekStyle(
-            weekdayStyle: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: DarkThemeColors.gray) ??
-                const TextStyle(),
-            weekendStyle: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: DarkThemeColors.lightGray) ??
-                const TextStyle(),
-          ),
-          availableCalendarFormats: const {
-            CalendarFormat.month: 'Месяц',
-            CalendarFormat.twoWeeks: '2 недели',
-            CalendarFormat.week: 'Неделя'
-          },
-          locale: 'ru_RU',
-          selectedDayPredicate: (day) {
-            return isSameDay(selectedDay, day);
-          },
-          //day changed
-          onDaySelected: (DateTime selectDay, DateTime focusDay) {
-            setState(() {
-              selectedDay = selectDay;
-              focusedDay = focusDay;
-              context
-                  .read<ScheduleBloc>()
-                  .add(ScheduleView(selectDay, widget.activeGroup));
-            });
-          },
-          onFormatChanged: (CalendarFormat format) {
-            setState(() {
-              calendarFormat = format;
-            });
-          },
-          formatAnimationDuration: const Duration(milliseconds: 400),
-          formatAnimationCurve: Curves.easeInOutSine,
-          calendarStyle: CalendarStyle(
-            rangeStartDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            rangeEndDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            withinRangeDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            outsideDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            disabledDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            weekendDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            holidayDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            todayDecoration: BoxDecoration(
-              border:
-                  Border.all(color: Theme.of(context).primaryColor, width: 2.0),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            defaultDecoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            selectedDecoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            todayTextStyle:
-                Theme.of(context).textTheme.labelLarge ?? const TextStyle(),
-            selectedTextStyle: Theme.of(context)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(color: Colors.white) ??
-                const TextStyle(),
-            defaultTextStyle:
-                Theme.of(context).textTheme.labelLarge ?? const TextStyle(),
-          ),
-          calendarBuilders: CalendarBuilders(
-            dowBuilder: (context, day) {
-              return Center(
-                child: Text(
-                  DateFormat.E('ru_RU').format(day),
-                  style: Theme.of(context)
+            locale: 'ru_RU',
+            selectedDayPredicate: (day) {
+              return isSameDay(selectedDay, day);
+            },
+            //day changed
+            onDaySelected: (DateTime selectDay, DateTime focusDay) {
+              setState(() {
+                selectedDay = selectDay;
+                focusedDay = focusDay;
+                context
+                    .read<ScheduleBloc>()
+                    .add(ScheduleView(selectDay, widget.activeGroup));
+              });
+            },
+            onFormatChanged: (CalendarFormat format) {
+              setState(() {
+                calendarFormat = format;
+              });
+            },
+            formatAnimationDuration: const Duration(milliseconds: 400),
+            formatAnimationCurve: Curves.easeInOutBack,
+            calendarStyle: CalendarStyle(
+              rangeStartDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              rangeEndDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              withinRangeDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              outsideDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              disabledDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              weekendDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              holidayDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              todayDecoration: BoxDecoration(
+                border: Border.all(
+                    color: Theme.of(context).primaryColor, width: 2.0),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              defaultDecoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              selectedDecoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              todayTextStyle:
+                  Theme.of(context).textTheme.labelLarge ?? const TextStyle(),
+              selectedTextStyle: Theme.of(context)
                       .textTheme
                       .labelLarge
-                      ?.copyWith(color: Theme.of(context).disabledColor),
-                ),
-              );
-            },
+                      ?.copyWith(color: Colors.white) ??
+                  const TextStyle(),
+              defaultTextStyle:
+                  Theme.of(context).textTheme.labelLarge ?? const TextStyle(),
+            ),
+            calendarBuilders: CalendarBuilders(
+              dowBuilder: (context, day) {
+                return Center(
+                  child: Text(
+                    DateFormat.E('ru_RU').format(day),
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge
+                        ?.copyWith(color: Theme.of(context).disabledColor),
+                  ),
+                );
+              },
+            ),
           ),
         ),
         BlocBuilder<ScheduleBloc, ScheduleState>(

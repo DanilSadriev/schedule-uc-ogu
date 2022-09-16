@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-// import 'package:dismissible_page/dismissible_page.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:raspisanie/feature/presentation/pages/call_schedule/call_schedule.dart';
 import 'package:raspisanie/feature/presentation/pages/home_page.dart';
 import 'package:raspisanie/feature/presentation/pages/more/support_page.dart';

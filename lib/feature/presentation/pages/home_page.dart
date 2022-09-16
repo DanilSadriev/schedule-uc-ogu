@@ -32,6 +32,32 @@ class HomePage extends StatelessWidget {
               top: false,
               right: false,
               bottom: true,
+              // child: NavigationBar(
+              //   selectedIndex: tabsRouter.activeIndex,
+              //   backgroundColor: Theme.of(context).backgroundColor,
+              //   labelBehavior:
+              //       NavigationDestinationLabelBehavior.onlyShowSelected,
+              //   // ignore: prefer_const_literals_to_create_immutables
+              //   destinations: [
+              //     const NavigationDestination(
+              //       icon: Icon(Icons.calendar_today_outlined),
+              //       selectedIcon: Icon(Icons.calendar_today_rounded),
+              //       label: 'Расписание',
+              //     ),
+              //     const NavigationDestination(
+              //       icon: Icon(Icons.watch_later_outlined),
+              //       selectedIcon: Icon(Icons.watch_later_rounded),
+              //       label: 'Звонки',
+              //     ),
+              //     const NavigationDestination(
+              //       icon: Icon(Icons.pending_outlined),
+              //       selectedIcon: Icon(Icons.pending_rounded),
+              //       label: 'Ещё',
+              //     ),
+              //   ],
+              //   onDestinationSelected: (int index) =>
+              //       tabsRouter.setActiveIndex(index),
+              // ),
               child: SalomonBottomBar(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 10,
