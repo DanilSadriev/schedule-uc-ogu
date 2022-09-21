@@ -114,6 +114,18 @@ class _SchedulePageViewState extends State<SchedulePageView> {
                 calendarFormat = format;
               });
             },
+            onHeaderTapped: (focusedDay) {
+              final currentDate = DateTime.now();
+
+              setState(() {
+                focusedDay = currentDate;
+                selectedDay = currentDate;
+              });
+
+              context
+                  .read<ScheduleBloc>()
+                  .add(ScheduleView(selectedDay, widget.activeGroup));
+            },
             formatAnimationDuration: const Duration(milliseconds: 400),
             formatAnimationCurve: Curves.easeInOutBack,
             calendarStyle: CalendarStyle(
